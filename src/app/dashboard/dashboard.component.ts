@@ -58,15 +58,15 @@ export class DashboardComponent implements OnInit, OnDestroy {
       let tweet = JSON.parse(response.text);
       console.log(tweet);
       //console.log(JSON.parse(message));
-      if (tweet.sentiment == 'Negative'  || (tweet.misenti > 0 && tweet.misenti < 40 )) {
+      if (tweet.sentiment == 'Negative'  || (tweet.misenti > 0 && tweet.misenti <= 40 ) || (tweet.ibm.score > 0 && tweet.ibm.score <= 80 )) {
         this.negativeMessages.unshift(tweet);
-      }else if (tweet.sentiment == 'Positive' || tweet.misenti > 66 ) {
+      }else if (tweet.sentiment == 'Positive' || tweet.misenti >= 66 || tweet.ibm.score >= 132) {
         console.log({P: tweet});
         this.positiveMessage.unshift(tweet);
-      } else if (tweet.sentiment == 'Neutral' || (tweet.misenti > 66 && tweet.misenti < 40 ) ) {
+      } else if (tweet.sentiment == 'Neutral' || (tweet.misenti < 66 && tweet.misenti > 40 ) || (tweet.ibm.score < 132 && tweet.ibm.score > 80 ) ) {
         console.log({N: tweet});
         this.neutralMessages.unshift(tweet);
-      } else if (tweet.sentiment == 'NoResult' && tweet.misent ==0) {
+      } else if (tweet.sentiment == 'NoResult' || tweet.misent == 0 || tweet.ibm.score == 0) {
         this.noResultMessages.unshift(tweet);
       }
 
