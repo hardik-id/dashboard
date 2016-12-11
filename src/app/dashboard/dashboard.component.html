@@ -1,0 +1,145 @@
+<div class="row">
+  <div class="col-sm-3 col-md-3">
+    <nav class="navbar navbar-light bg-faded">
+      <form class="form-inline float-xs-left">
+        <button class="btn btn btn-primary" type="submit" (click)="start()">
+          <i class="fa fa-play" style="padding-right:10px;" aria-hidden="true"></i>Start
+        </button>
+        <button class="btn btn btn-danger" type="submit" (click)="stop()">
+          <i class="fa fa-stop" style="padding-right:10px;" aria-hidden="true"></i>Stop</button>
+      </form>
+    </nav>
+    <nav class="navbar navbar-light bg-faded">
+      <form class="form-inline float-xs-left">
+        <input class="form-control" type="text" placeholder="Keywords" #key>
+        <button class="btn btn-outline-success" type="submit" (click)="sendMessage(key)">Add</button>
+      </form>
+    </nav>
+    <div class="list-group">
+        <button type="button" class="list-group-item list-group-item-action"
+                *ngFor="let keyword of keywords;let idx = index"
+                [class.active]=" idx == activeKeywordIndex ? true : false"
+                (click)="activeKeywordIndex=idx">{{keyword}}</button>
+    </div>
+    <div style="display: block">
+      <canvas baseChart
+              [data]="doughnutChartData"
+              [labels]="doughnutChartLabels"
+              [chartType]="doughnutChartType"></canvas>
+    </div>
+  </div>
+
+  <div class="col-sm-9 col-md-9">
+
+
+    <div class="card">
+      <div class="card-header"><strong>Negative Tweets  ({{negativeMessages.length}})</strong></div>
+      <div class="card-block">
+        <div class="list-group" style="max-height: 333px;min-height: 333px;overflow-y: auto;overflow-x: hidden;padding-right:7px;">
+          <div class="row">
+            <div class="col-sm-2 col-md-2">Microsoft</div>
+            <div class="col-sm-2 col-md-2">Mashape</div>
+            <div class="col-sm-8 col-md-8">Tweet</div>
+
+          </div>
+          <div class="row" *ngFor="let message of negativeMessages">
+            <div class="col-sm-2 col-md-2">
+
+              <div class="text-xs-center" id="example-caption-1">{{message.misenti}}%</div>
+              <progress class="progress progress-danger" [value]="message.misenti" max="100" aria-describedby="example-caption-2"></progress>
+            </div>
+            <div class="col-sm-2 col-md-2">
+              <strong>{{message.sentiment}}</strong>
+            </div>
+            <div class="col-sm-8 col-md-8">
+              <div  class="list-group-item list-group-item-action list-group-item-danger">
+                <strong>{{message.message}}</strong>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--<div class="card" >
+      <div class="card-header"><strong>Negative Tweets ({{negativeMessages.length}})</strong></div>
+      <div class="card-block">
+        <div class="list-group" style="max-height: 333px; min-height: 333px;overflow-y: auto;overflow-x: hidden;padding-right:7px;">
+          <div class="row">
+
+            <div class="col-sm-10 col-md-10">
+              <div *ngFor="let message of negativeMessages" class="list-group-item list-group-item-action list-group-item-danger">
+                <strong>{{message.message}}</strong>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>-->
+    <div class="card">
+      <div class="card-header"><strong>Positive Tweets  ({{positiveMessage.length}})</strong></div>
+      <div class="card-block">
+        <div class="list-group" style="max-height: 333px;min-height: 333px;overflow-y: auto;overflow-x: hidden;padding-right:7px;">
+          <div class="row" *ngFor="let message of positiveMessage">
+            <div class="col-sm-2 col-md-2">
+              <div class="text-xs-center" id="example-caption-1">{{message.misenti}}%</div>
+              <progress class="progress progress-success" [value]="message.misenti" max="100" aria-describedby="example-caption-2"></progress>
+            </div>
+            <div class="col-sm-2 col-md-2">
+              <strong>{{message.sentiment}}</strong>
+            </div>
+            <div class="col-sm-8 col-md-8">
+              <div  class="list-group-item list-group-item-action list-group-item-success">
+                <strong>{{message.message}}</strong>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-header"><strong>Neutral Tweets ({{neutralMessages.length}})</strong></div>
+      <div class="card-block">
+        <div class="list-group" style="max-height: 333px;min-height: 333px;overflow-y: auto;overflow-x: hidden;padding-right:7px;">
+        <div *ngFor="let message of neutralMessages" class="list-group-item list-group-item-action list-group-item-warning">
+          {{message.message}}
+        </div>
+        </div>
+      </div>
+    </div>
+
+    <!--<div class="card">
+      <div class="card-header"><strong>Positive Tweets ({{positiveMessage.length}})</strong></div>
+      <div class="card-block">
+        <div class="list-group" style="max-height: 333px;min-height: 333px;overflow-y: auto;overflow-x: hidden;padding-right:7px;">
+          <div *ngFor="let message of positiveMessage" class="alert alert-success" role="alert">
+            {{message.message}}
+          </div>
+        </div>
+      </div>
+    </div>-->
+
+  </div>
+
+</div>
+
+<div class="row">
+
+  <div class="card">
+    <div class="card-header"><strong>Unknown Result ({{noResultMessages.length}})</strong></div>
+    <div class="card-block">
+      <div class="list-group" style="max-height: 333px;min-height: 333px;overflow-y: auto;overflow-x: hidden;padding-right:7px;">
+        <div class="row" *ngFor="let message of noResultMessages">
+          <div class="col-sm-2 col-md-2">
+            <progress class="progress" [value]="message.misenti" max="100" aria-describedby="example-caption-2"></progress>
+          </div>
+          <div class="col-sm-10 col-md-10">
+            <div  class="alert alert-success" role="alert">
+              {{message.message}}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
