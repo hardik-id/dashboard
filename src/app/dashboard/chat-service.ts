@@ -6,6 +6,7 @@ import {Injectable} from "@angular/core";
 @Injectable()
 export class ChatService {
   private url = 'http://localhost:3000';
+  //private url = 'http://ec2-54-187-214-87.us-west-2.compute.amazonaws.com:3000';
   private mURL = 'https://westus.api.cognitive.microsoft.com/text/analytics/v2.0/sentiment';
   private socket;
 

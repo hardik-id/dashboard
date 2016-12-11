@@ -1,6 +1,6 @@
-import {Component, OnInit, OnDestroy} from '@angular/core';
+import {Component, OnInit, OnDestroy, Input} from '@angular/core';
 import {ChatService} from "./chat-service";
-
+import * as _ from 'lodash';
 
 
 
@@ -10,6 +10,15 @@ import {ChatService} from "./chat-service";
   styleUrls: ['./dashboard.component.css']
 })
 export class DashboardComponent implements OnInit, OnDestroy {
+
+
+  @Input()
+  public alerts: Array<IAlert> = [];
+
+  private backup: Array<IAlert>;
+
+
+
   messages = [];
   positiveMessage = [];
   neutralMessages = [];
@@ -27,6 +36,11 @@ export class DashboardComponent implements OnInit, OnDestroy {
   activeKeywordIndex;
 
   constructor(private chatService: ChatService) {
+    /*this.alerts.push({
+      type: 'success',
+      message: 'This is an success alert'
+    });*/
+    this.backup = this.alerts.map((alert: IAlert) => Object.assign({}, alert));
   }
 
   sendMessage(key) {
@@ -57,6 +71,15 @@ export class DashboardComponent implements OnInit, OnDestroy {
       let response = <any> message;
       let tweet = JSON.parse(response.text);
       console.log(tweet);
+      if(tweet.message){
+        console.log(tweet.message);
+        var words = _.words(tweet.message);
+        console.log(words);
+        if(words.indexOf('down') > 0 || words.indexOf('attack') > 0 || words.indexOf('hack') > 0){
+          console.log(tweet.message);
+          this.alerts.push({type: 'danger',message: tweet})
+        }
+      }
       //console.log(JSON.parse(message));
       this.messages.unshift(tweet);
       if (tweet.sentiment == 'Negative' || tweet.miimg == 'Negative'  || (tweet.misenti > 0 && tweet.misenti <= 40 ) || (tweet.ibm.score > 0 && tweet.ibm.score <= 80 )) {
@@ -74,11 +97,21 @@ export class DashboardComponent implements OnInit, OnDestroy {
     })
   }
 
-getMicrosoftCogn(){
-  //this.chatService.getMicrosoftCogn();
-}
 
+  public closeAlert(alert: IAlert) {
+    const index: number = this.alerts.indexOf(alert);
+    this.alerts.splice(index, 1);
+  }
+
+  public reset() {
+    this.alerts = this.backup.map((alert: IAlert) => Object.assign({}, alert));
+  }
   ngOnDestroy() {
     this.connection.unsubscribe();
   }
+}
+
+export interface IAlert {
+  type: string;
+  message: string;
 }

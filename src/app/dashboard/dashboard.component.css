@@ -1,0 +1,5 @@
+:host >>> .alert-custom {
+  color: white;
+  background-color: #d9534f;
+  border-color: #800040;
+}

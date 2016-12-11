@@ -34,7 +34,16 @@
   </div>
 
   <div class="col-sm-9 col-md-9">
+    <p>
+      <button type="button" class="btn btn-info" *ngIf="alerts.length" (click)="reset()">Reset</button>
+    </p>
 
+    <p *ngFor="let alert of alerts">
+      <ngb-alert type="custom" (close)="closeAlert(alert)">
+        <strong>HIGH ALERT!!! &nbsp;&nbsp;&nbsp; </strong>
+        {{ alert.message.message }}
+      </ngb-alert>
+    </p>
 
     <div class="card">
       <div class="card-header"><strong>Negative Tweets  ({{negativeMessages.length}})</strong></div>
