@@ -37,10 +37,21 @@
       <div class="card-block">
         <div class="list-group" style="max-height: 333px;min-height: 333px;overflow-y: auto;overflow-x: hidden;padding-right:7px;">
           <div class="row">
-            <div class="col-sm-2 col-md-2">Microsoft</div>
+            <table class="table table-hover">
+              <thead>
+              <tr>
+                <th class="col-sm-2 col-md-2">Microsoft</th>
+                <th class="col-sm-2 col-md-2">IBM</th>
+                <th class="col-sm-1 col-md-1">Mashape</th>
+                <th class="col-sm-1 col-md-1">Image</th>
+                <th class="col-sm-6 col-md-6">Tweet</th>
+              </tr>
+              </thead>
+            </table>
+            <!--<div class="col-sm-2 col-md-2">Microsoft</div>
             <div class="col-sm-2 col-md-2">IBM</div>
             <div class="col-sm-1 col-md-1">Mashape</div>
-            <div class="col-sm-7 col-md-7">Tweet</div>
+            <div class="col-sm-7 col-md-7">Tweet</div>-->
 
           </div>
           <div class="row" *ngFor="let message of negativeMessages">
@@ -56,7 +67,10 @@
             <div class="col-sm-1 col-md-1">
               <strong>{{message.sentiment}}</strong>
             </div>
-            <div class="col-sm-7 col-md-7">
+            <div class="col-sm-1 col-md-1">
+              <strong>{{message.miimg == "NoResult" ? "-": message.miimg}}</strong>
+            </div>
+            <div class="col-sm-6 col-md-6">
               <div  class="list-group-item list-group-item-action list-group-item-danger">
                 <strong>{{message.message}}</strong>
               </div>
@@ -71,10 +85,21 @@
       <div class="card-block">
         <div class="list-group" style="max-height: 333px;min-height: 333px;overflow-y: auto;overflow-x: hidden;padding-right:7px;">
           <div class="row">
-            <div class="col-sm-2 col-md-2">Microsoft</div>
+            <table class="table table-hover">
+              <thead>
+              <tr>
+                <th class="col-sm-2 col-md-2">Microsoft</th>
+                <th class="col-sm-2 col-md-2">IBM</th>
+                <th class="col-sm-1 col-md-1">Mashape</th>
+                <th class="col-sm-1 col-md-1">Image</th>
+                <th class="col-sm-6 col-md-6">Tweet</th>
+              </tr>
+              </thead>
+            </table>
+            <!--<div class="col-sm-2 col-md-2">Microsoft</div>
             <div class="col-sm-2 col-md-2">IBM</div>
             <div class="col-sm-1 col-md-1">Mashape</div>
-            <div class="col-sm-7 col-md-7">Tweet</div>
+            <div class="col-sm-7 col-md-7">Tweet</div>-->
 
           </div>
           <div class="row" *ngFor="let message of positiveMessage">
@@ -90,7 +115,10 @@
             <div class="col-sm-1 col-md-1">
               <strong>{{message.sentiment}}</strong>
             </div>
-            <div class="col-sm-7 col-md-7">
+            <div class="col-sm-1 col-md-1">
+              <strong>{{message.miimg == "NoResult" ? "-": message.miimg}}</strong>
+            </div>
+            <div class="col-sm-6 col-md-6">
               <div  class="list-group-item list-group-item-action list-group-item-success">
                 <strong>{{message.message}}</strong>
               </div>
@@ -104,10 +132,21 @@
       <div class="card-block">
         <div class="list-group" style="max-height: 333px;min-height: 333px;overflow-y: auto;overflow-x: hidden;padding-right:7px;">
           <div class="row">
-            <div class="col-sm-2 col-md-2">Microsoft</div>
+            <table class="table table-hover">
+              <thead>
+              <tr>
+                <th class="col-sm-2 col-md-2">Microsoft</th>
+                <th class="col-sm-2 col-md-2">IBM</th>
+                <th class="col-sm-1 col-md-1">Mashape</th>
+                <th class="col-sm-1 col-md-1">Image</th>
+                <th class="col-sm-6 col-md-6">Tweet</th>
+              </tr>
+              </thead>
+            </table>
+          <!--  <div class="col-sm-2 col-md-2">Microsoft</div>
             <div class="col-sm-2 col-md-2">IBM</div>
             <div class="col-sm-1 col-md-1">Mashape</div>
-            <div class="col-sm-7 col-md-7">Tweet</div>
+            <div class="col-sm-7 col-md-7">Tweet</div>-->
 
           </div>
           <div class="row" *ngFor="let message of neutralMessages">
@@ -121,9 +160,13 @@
               <progress class="progress progress-warning" [value]="message.ibm.score" max="200" aria-describedby="example-caption-2"></progress>
             </div>
             <div class="col-sm-1 col-md-1">
-              <strong>{{message.sentiment}}</strong>
+              <strong>{{message.sentiment }}</strong>
             </div>
-            <div class="col-sm-7 col-md-7">
+            <div class="col-sm-1 col-md-1">
+              <strong>{{message.miimg == "NoResult" ? "-": message.miimg}}</strong>
+            </div>
+            <div class="col-sm-6 col-md-6">
+
               <div  class="list-group-item list-group-item-action list-group-item-warning">
                 <strong>{{message.message}}</strong>
               </div>
@@ -165,10 +208,12 @@
     <div class="card-block">
       <div class="list-group" style="max-height: 333px;min-height: 333px;overflow-y: auto;overflow-x: hidden;padding-right:7px;">
         <div class="row">
-          <div class="col-sm-2 col-md-2">Microsoft</div>
+
+          <!--<div class="col-sm-2 col-md-2">Microsoft</div>
           <div class="col-sm-2 col-md-2">IBM</div>
           <div class="col-sm-1 col-md-1">Mashape</div>
-          <div class="col-sm-7 col-md-7">Tweet</div>
+          <div class="col-sm-1 col-md-1">Image</div>
+          <div class="col-sm-7 col-md-7">Tweet</div>-->
 
         </div>
         <div class="row" *ngFor="let message of noResultMessages">
