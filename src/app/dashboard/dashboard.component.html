@@ -8,7 +8,11 @@
         <button class="btn btn btn-danger" type="submit" (click)="stop()">
           <i class="fa fa-stop" style="padding-right:10px;" aria-hidden="true"></i>Stop</button>
       </form>
+
     </nav>
+    <div class="alert alert-warning" role="alert">
+      <h1><strong>Total Tweet: ({{messages.length}})</strong></h1>
+    </div>
     <nav class="navbar navbar-light bg-faded">
       <form class="form-inline float-xs-left">
         <input class="form-control" type="text" placeholder="Keywords" #key>

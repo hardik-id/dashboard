@@ -58,6 +58,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
       let tweet = JSON.parse(response.text);
       console.log(tweet);
       //console.log(JSON.parse(message));
+      this.messages.unshift(tweet);
       if (tweet.sentiment == 'Negative' || tweet.miimg == 'Negative'  || (tweet.misenti > 0 && tweet.misenti <= 40 ) || (tweet.ibm.score > 0 && tweet.ibm.score <= 80 )) {
         this.negativeMessages.unshift(tweet);
       }else if (tweet.sentiment == 'Positive' || tweet.misenti >= 66 || tweet.ibm.score >= 132 || tweet.miimg == 'Positive') {
