@@ -26,6 +26,8 @@ export class DashboardComponent implements OnInit, OnDestroy {
   noResultMessages=[];
   connection;
   message;
+  mood=1;
+
 
   public doughnutChartLabels: string[] = ['Negative', 'Positive', 'Neutral'];
   public doughnutChartData: number[] = [1, 1, 1];
@@ -94,10 +96,28 @@ export class DashboardComponent implements OnInit, OnDestroy {
       } else if (tweet.sentiment == 'NoResult' || tweet.misent == 0 || tweet.ibm.score == 0) {
         this.noResultMessages.unshift(tweet);
       }
-
+      this.findMood();
     })
   }
 
+  public findMood(){
+    let totalCount = this.messages.length;
+    let positiveCount = this.positiveMessage.length;
+    let per = positiveCount * 100 / totalCount;
+    console.log("Finding MOOODDD:::::::::::::");
+    if(per >= 80 ){
+      this.mood=1;
+    }else if(per < 80 && per >= 60){
+      this.mood=2;
+    }else if(per < 60 && per >= 40){
+      this.mood=3;
+    }else if(per < 40 && per >= 20){
+      this.mood=4;
+    }else if(per < 20){
+      this.mood=5;
+    }
+console.log(this.mood);
+  }
 
   public closeAlert(alert: IAlert) {
     const index: number = this.alerts.indexOf(alert);

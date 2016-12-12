@@ -25,12 +25,18 @@
                 [class.active]=" idx == activeKeywordIndex ? true : false"
                 (click)="activeKeywordIndex=idx">{{keyword}}</button>
     </div>
+    <hr/>
+    <div>
+      <img [src]="'/assets/img/'+mood+'.png'" />
+    </div>
+    <hr/>
     <div style="display: block">
       <canvas baseChart
               [data]="doughnutChartData"
               [labels]="doughnutChartLabels"
               [chartType]="doughnutChartType"></canvas>
     </div>
+
   </div>
 
   <div class="col-sm-9 col-md-9">
