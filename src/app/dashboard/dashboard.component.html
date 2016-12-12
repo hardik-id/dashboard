@@ -2,9 +2,9 @@
   <div class="col-sm-3 col-md-3">
     <nav class="navbar navbar-light bg-faded">
       <form class="form-inline float-xs-left">
-        <button class="btn btn btn-primary" type="submit" (click)="start()">
-          <i class="fa fa-play" style="padding-right:10px;" aria-hidden="true"></i>Start
-        </button>
+          <button class="btn btn btn-primary" type="submit" (click)="start()">
+            <i class="fa fa-play" style="padding-right:10px;" aria-hidden="true"></i>Start
+          </button>
         <button class="btn btn btn-danger" type="submit" (click)="stop()">
           <i class="fa fa-stop" style="padding-right:10px;" aria-hidden="true"></i>Stop</button>
       </form>
@@ -40,6 +40,12 @@
 
     <p *ngFor="let alert of alerts">
       <ngb-alert type="custom" (close)="closeAlert(alert)">
+        <button class="btn btn btn-warning" type="submit" (click)="start()">
+          Open Ticket
+        </button>
+        <button class="btn btn btn-info" type="submit" (click)="start()">
+          Reply
+        </button>
         <strong>HIGH ALERT!!! &nbsp;&nbsp;&nbsp; </strong>
         {{ alert.message.message }}
       </ngb-alert>

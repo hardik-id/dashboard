@@ -77,7 +77,8 @@ export class DashboardComponent implements OnInit, OnDestroy {
         console.log(words);
         if(words.indexOf('down') > 0 || words.indexOf('attack') > 0 || words.indexOf('hack') > 0){
           console.log(tweet.message);
-          this.alerts.push({type: 'danger',message: tweet})
+          this.alerts.push({type: 'danger',message: tweet});
+          this.chatService.sendMail(tweet);
         }
       }
       //console.log(JSON.parse(message));

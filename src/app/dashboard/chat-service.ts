@@ -35,6 +35,14 @@ export class ChatService {
     this.http.post(this.url + '/tweets/start-stream',{keywords : body.join()},options).subscribe();
     return;
   }
+  sendMail(msg){
+    console.log("Sending Mail;" );
+    console.log(msg);
+    let headers = new Headers({ 'Content-Type': 'application/json' });
+    let options = new RequestOptions({ headers: headers });
+    this.http.post(this.url + '/tweets/send-mail',{text : msg},options).subscribe();
+    return;
+  }
   stopStream(){
     this.http.get(this.url + '/tweets/stop-stream').subscribe();
     return;
