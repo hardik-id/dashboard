@@ -1,39 +1,49 @@
-<p>
-  jobs works!
-</p>
-<nav class="navbar navbar-light bg-faded">
-  <form class="form-inline float-xs-left">
-    <input class="form-control" type="text" placeholder="Search">
-    <button class="btn btn-outline-success" type="submit">Search</button>
-  </form>
-</nav>
-<table class="table table-hover">
-  <thead class="thead-inverse">
-  <tr>
-    <th>#</th>
-    <th>First Name</th>
-    <th>Last Name</th>
-    <th>Username</th>
-  </tr>
-  </thead>
-  <tbody>
-  <tr>
-    <th scope="row">1</th>
-    <td>Mark</td>
-    <td>Otto</td>
-    <td>@mdo</td>
-  </tr>
-  <tr>
-    <th scope="row">2</th>
-    <td>Jacob</td>
-    <td>Thornton</td>
-    <td>@fat</td>
-  </tr>
-  <tr>
-    <th scope="row">3</th>
-    <td>Larry</td>
-    <td>the Bird</td>
-    <td>@twitter</td>
-  </tr>
-  </tbody>
-</table>
+<!--
+<div class="col-md-6">
+
+  <canvas baseChart
+          [data]="lineChartData"
+          [labels]="lineChartLabels"
+          [options]="lineChartOptions"
+          [chartType]="lineChartType"
+          (chartHover)="chartHovered($event)"
+          (chartClick)="chartClicked($event)"></canvas>
+</div>
+<div class="col-md-6">
+  <canvas baseChart
+          [data]="pieChartData"
+          [labels]="pieChartLabels"
+          [chartType]="pieChartType"
+          (chartHover)="chartHovered($event)"
+          (chartClick)="chartClicked($event)"></canvas>
+</div>
+<div class="col-md-12 text-center" style="margin-top: 10px;height: 50%">
+  <button (click)="randomizeType()" style="display: inline-block">Toggle</button>
+</div>
+-->
+
+  <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+  <script type="text/javascript">
+    google.charts.load('upcoming', {'packages':['geochart']});
+    google.charts.setOnLoadCallback(drawRegionsMap);
+
+    function drawRegionsMap() {
+
+      var data = google.visualization.arrayToDataTable([
+        ['Country', 'Popularity'],
+        ['Germany', 200],
+        ['United States', 300],
+        ['Brazil', 400],
+        ['Canada', 500],
+        ['France', 600],
+        ['RU', 700]
+      ]);
+
+      var options = {};
+
+      var chart = new google.visualization.GeoChart(document.getElementById('regions_div'));
+
+      chart.draw(data, options);
+    }
+  </script>
+<div id="regions_div" style="width: 900px; height: 500px;"></div>

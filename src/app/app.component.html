@@ -1,5 +1,11 @@
-<div class="container-fluid" style="margin-top: 20px;">
-
+<div class="container-fluid">
+  <nav class="navbar navbar-light bg-faded">
+    <div class="nav navbar-nav">
+      <a class="nav-item nav-link " [routerLinkActive]="'active'" [routerLink]="['/dashboard']">Live</a>
+      <a class="nav-item nav-link" [routerLinkActive]="'active'" [routerLink]="['/jobs']">Dashboard</a>
+    </div>
+  </nav>
+<hr/>
   <router-outlet></router-outlet>
 
 
