@@ -23,6 +23,7 @@
     "@ng-bootstrap/ng-bootstrap": "^1.0.0-alpha.14",
     "@types/lodash": "^4.14.43",
     "@types/socket.io-client": "^1.4.29",
+    "bootstrap": "^4.0.0-alpha.5",
     "chart.js": "^2.4.0",
     "core-js": "^2.4.1",
     "lodash": "^4.17.2",
